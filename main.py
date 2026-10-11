@@ -24,7 +24,7 @@ def multiply(a: int, b: int) -> dict[str, int]:
 
 class ChatRequest(BaseModel):
     message: str = Field(min_length=1, max_length=2000)
-    temperature: float = Field(default=0.7, ge=0)
+    temperature: float = Field(default=0.7, ge=0, le=2)
     top_p: float = Field(default=1.0, ge=0, le=1)
 
 
