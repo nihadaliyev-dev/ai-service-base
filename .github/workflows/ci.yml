@@ -18,3 +18,13 @@ jobs:
       - run: uv run ruff format --check .
       - run: uv run mypy .
       - run: uv run pytest --cov=main --cov-report=term-missing --cov-fail-under=90
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: docker build -t ai-service-base .
+      - run: docker run -d --name app -p 8000:8000 ai-service-base
+      - run: curl --fail --retry 10 --retry-connrefused --retry-delay 1 http://localhost:8000/health
+      - if: failure()
+        run: docker logs app
