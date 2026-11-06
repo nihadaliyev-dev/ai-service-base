@@ -1,11 +1,8 @@
 import asyncio
 import time
 from collections.abc import Awaitable
-from typing import TypeVar
 
 import httpx
-
-T = TypeVar("T")
 
 URLS = ["https://httpbin.org/delay/2"] * 10 + [
     "https://httpbin.org/status/404",
