@@ -28,7 +28,7 @@ async def check(
 async def run_gather(
     client: httpx.AsyncClient, sem: asyncio.Semaphore, urls: list[str]
 ) -> list[tuple[str, int | str]]:
-    return list(await asyncio.gather(*(check(client, sem, u) for u in URLS)))
+    return list(await asyncio.gather(*(check(client, sem, u) for u in urls)))
 
 
 async def run_sequential(
